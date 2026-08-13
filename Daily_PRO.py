@@ -517,7 +517,9 @@ def main():
  
     production_data = fetch_all_production(week_start, week_end)
  
-    output_file = os.path.join(os.path.expanduser("~"), "Downloads",
+    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
+    os.makedirs(output_dir, exist_ok=True)
+    output_file = os.path.join(output_dir,
                   f"Weekly_Production_{week_dates[0].strftime('%Y%m%d')}_{week_dates[-1].strftime('%Y%m%d')}.xlsx")
     write_report(production_data, week_dates, output_file)
  
