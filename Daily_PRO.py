@@ -25,13 +25,23 @@ from email.mime.application import MIMEApplication
 
 # In[12]:
 
+import smtplib
 
-API_TOKEN_CGNEE  = "f90ad38034dd320aca9e447e99241a76"
+
+API_TOKEN_CGNEE  = os.environ["CGNEE_API_TOKEN"]  
 BASE_URL_CGNEE   = "https://cgnee.greenbyte.cloud/api/2.0"
 
-EMAIL_PASSWORD   = "Yv.13906465361"   
+# EMAIL_PASSWORD   = "Yv.13906465361"   
+# TEMPLATE_PATH    = r"C:\Users\CAO WENYU\OneDrive - CGN Europe Energy\Pro Template - Copy.xlsx"   # ← 改成你的模板路径
 
-TEMPLATE_PATH    = r"C:\Users\CAO WENYU\OneDrive - CGN Europe Energy\Pro Template - Copy.xlsx"   # ← 改成你的模板路径
+SMTP_SERVER   = os.environ.get("SMTP_SERVER", "smtp.office365.com")
+SMTP_PORT     = int(os.environ.get("SMTP_PORT", "587"))
+SMTP_USER     = os.environ["SMTP_USER"]                    # 发件邮箱
+SMTP_PASSWORD = os.environ["SMTP_PASSWORD"]                # 邮箱密码/应用专用密码
+EMAIL_TO      = os.environ.get("EMAIL_TO", "Ziyi.Luo@cgnee.com;Zilin.WANG@cgnee.com")
+
+# 模板文件放进仓库，用相对路径读取（不能再用本地 OneDrive 路径）
+TEMPLATE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Pro Template - Copy.xlsx")
 
 
 # In[13]:
